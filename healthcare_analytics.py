@@ -143,9 +143,9 @@ def generate_staffing_data(seed: int = 99) -> pd.DataFrame:
                 "department": dept,
                 "month": month.strftime("%Y-%m"),
                 "staff_count": rng.integers(8, 45),
-                "overtime_hrs": rng.normal(12, 5).clip(0).round(1),
-                "absenteeism_rate": rng.uniform(0.03, 0.12).round(3),
-                "training_compliance": rng.uniform(0.78, 0.99).round(3),
+                "overtime_hrs": round(max(rng.normal(12, 5), 0), 1),
+                "absenteeism_rate": round(rng.uniform(0.03, 0.12), 3),
+                "training_compliance": round(rng.uniform(0.78, 0.99), 3),
             })
     return pd.DataFrame(data)
 
